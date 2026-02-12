@@ -1,15 +1,14 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"name": "Titles On Youtube Links",
 	"short_name": "Youtube Link Titles",
 	"description": "Fetches and displays titles of youtube links on mouse-over. Never get rickrolled again!",
-	"version": "2.0",
+	"version": "2.1",
 	"icons": {
 		"128": "icon128.png"
 	},
 	"background": {
-		"scripts": ["jquery-2.2.0.min.js", "background.js"],
-		"persistent": false
+		"service_worker": "background.js"
 	},
 	"content_scripts": [
 		{
@@ -17,5 +16,8 @@
 			"exclude_matches": ["*://*.youtube.com/*"],
 			"js": ["jquery-2.2.0.min.js", "content.js"]
 		}
+	],
+	"host_permissions": [
+		"https://www.youtube.com/*"
 	]
 }

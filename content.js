@@ -10,14 +10,17 @@ var popupStyle = `
 	position: absolute;
 	pointer-events: none;
 	z-index: 19999999999;
-	color: black;
+	color: #1a1a1a;
 	text-decoration: none !important;
-	font-size: 16px;
-	padding: 2px 4px;
+	font-size: 15px;
+	font-weight: 500;
+	padding: 6px 10px;
 	margin: 3px;
-	background-color: #fff;
-	border: solid 1px #666;
-	border-radius: 5px;
+	background-color: #ffffff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	backdrop-filter: blur(10px);
 `;
 
 /**
@@ -48,7 +51,7 @@ function updateTitle()
 	{
 		popup.text(title);
 		if (title.match(/rick astley/i) && title.match(/never/i))
-			popup.css('background-color', '#f4c3c3');
+			popup.css('background-color', '#fee2e2');
 	}
 	else if (requests[popupLinkID])
 		popup.text('[Fetching...]');
@@ -60,8 +63,8 @@ function gotResponse(id, data, status) {
 	// update the cache
 	if (data)
 	{
-		if (data.items.length)
-			titleCache[id] = data.items[0].snippet.title;
+		if (data.title)
+			titleCache[id] = data.title;
 		else
 			titleCache[id] = '[Not Found]';
 	}
